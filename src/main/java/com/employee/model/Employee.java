@@ -5,6 +5,7 @@ import com.employee.enums.Gender;
 import com.employee.enums.Location;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,9 +16,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "employee_tbl")
 public class Employee {
@@ -26,20 +33,27 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Column(nullable = false)
 	private String firstName;
 
+	@Column(nullable = false)
 	private String lastName;
 
 	private long employeeNumber;
 
+	@Column(nullable = false)
 	private String email;
 
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Gender gender;
 
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Designation designation;
 
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Location reportingLocation;
 
 //	many employees belong to one company
